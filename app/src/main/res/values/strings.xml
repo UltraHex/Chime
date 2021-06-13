@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Chime</string>
+    <string name="button">Activate</string>
+    <string name="chimeServiceDescription">Quarterly Chime Service</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="sound">Sound</string>
+</resources>
