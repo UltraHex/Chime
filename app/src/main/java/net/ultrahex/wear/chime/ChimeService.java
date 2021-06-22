@@ -95,7 +95,7 @@ public final class ChimeService extends Service {
 		PendingIntent pendingIntent = PendingIntent.getForegroundService(this, 0, chimeIntent, 0);
 
 		alarmManager.cancel(pendingIntent);
-		alarmManager.setExact(RTC_WAKEUP, nextChime, pendingIntent);
+		alarmManager.setExactAndAllowWhileIdle(RTC_WAKEUP, nextChime, pendingIntent);
 
 		Log.d(TAG, String.format("scheduleNextChime: %1$tY %1$tB %1$te, %1$tI:%1$tM %1$tp", nextChime));
 	}
