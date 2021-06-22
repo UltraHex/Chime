@@ -1,25 +1,13 @@
 package net.ultrahex.wear.chime;
 
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Intent;
-import android.graphics.drawable.Icon;
-import android.os.IBinder;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.util.Log;
+import android.app.*;
+import android.content.*;
+import android.graphics.drawable.*;
+import android.os.*;
+import android.util.*;
 
-import static android.app.AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-import static android.app.AlarmManager.RTC_WAKEUP;
-import static android.app.NotificationManager.INTERRUPTION_FILTER_ALARMS;
-import static android.app.NotificationManager.INTERRUPTION_FILTER_ALL;
-import static android.app.NotificationManager.INTERRUPTION_FILTER_NONE;
-import static android.app.NotificationManager.INTERRUPTION_FILTER_PRIORITY;
-import static android.app.NotificationManager.INTERRUPTION_FILTER_UNKNOWN;
+import static android.app.AlarmManager.*;
+import static android.app.NotificationManager.*;
 
 public final class ChimeService extends Service {
 
@@ -30,6 +18,7 @@ public final class ChimeService extends Service {
 	@Override
 	public void onCreate() {
 		Log.d(TAG, "onCreate() called");
+
 		((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).createNotificationChannel(
 				new NotificationChannel(
 						"ChimeService",
@@ -37,6 +26,7 @@ public final class ChimeService extends Service {
 						NotificationManager.IMPORTANCE_LOW
 				)
 		);
+
 		startForeground(
 				1,
 				new Notification.Builder(this, "ChimeService")

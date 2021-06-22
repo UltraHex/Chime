@@ -1,8 +1,8 @@
 package net.ultrahex.wear.chime;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import android.app.*;
+import android.content.*;
+import android.os.*;
 
 public final class MainActivity extends Activity {
 
