@@ -12,6 +12,9 @@ import static android.app.NotificationManager.*;
 public final class ChimeService extends Service {
 
 	private static final String TAG = "ChimeService";
+	private static final String CHANNEL_ID = "ChimeService";
+
+	private Notification notification;
 
 	public ChimeService() {}
 
@@ -20,22 +23,15 @@ public final class ChimeService extends Service {
 		Log.d(TAG, "onCreate() called");
 
 		((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).createNotificationChannel(
-				new NotificationChannel(
-						"ChimeService",
-						"Chime Service",
-						NotificationManager.IMPORTANCE_LOW
-				)
+				new NotificationChannel(CHANNEL_ID, "Chime Service", NotificationManager.IMPORTANCE_LOW)
 		);
 
-		startForeground(
-				1,
-				new Notification.Builder(this, "ChimeService")
-						.setLargeIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
-						.setSmallIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
-						.setContentTitle("Chime Service").
-						setContentText("Chime!")
-						.build()
-		);
+		notification = new Notification.Builder(this, CHANNEL_ID)
+				.setLargeIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+				.setSmallIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+				.setContentTitle("Chime Service")
+				.setContentText("Chime!")
+				.build();
 
 		scheduleNextChime();
 	}
@@ -48,6 +44,8 @@ public final class ChimeService extends Service {
 						"flags = [" + flags + "], " +
 						"startId = [" + startId + "]"
 		);
+
+		startForeground(1, notification);
 
 		switch (intent.getAction()) {
 			case "chime":
