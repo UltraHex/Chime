@@ -32,8 +32,6 @@ public final class ChimeService extends Service {
 				.setContentTitle("Chime Service")
 				.setContentText("Chime!")
 				.build();
-
-		scheduleNextChime();
 	}
 
 	@Override
